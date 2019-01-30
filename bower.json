@@ -1,0 +1,7 @@
+{
+  "name": "maven-jasmine-v1",
+  "dependencies": {
+    "angular": "1.2.20",
+    "angular-mocks": "1.2.20"
+  }
+}

@@ -1,0 +1,65 @@
+<project
+        xmlns="http://maven.apache.org/POM/4.0.0"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>br.com.eticasolucoes</groupId>
+    <artifactId>maven-jasmine-angulajs-v1</artifactId>
+    <version>1.0.0</version>
+    <name>maven-jasmine-angularjs-v1</name>
+
+    <properties>
+        <bower-components>${basedir}/bower_components</bower-components>
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.github.klieber</groupId>
+                <artifactId>phantomjs-maven-plugin</artifactId>
+                <version>0.7</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>install</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <version>2.1.1</version>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>com.github.searls</groupId>
+                <artifactId>jasmine-maven-plugin</artifactId>
+                <version>2.2</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>test</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <webDriverClassName>org.openqa.selenium.phantomjs.PhantomJSDriver</webDriverClassName>
+                    <webDriverCapabilities>
+                        <capability>
+                            <name>phantomjs.binary.path</name>
+                            <value>${phantomjs.binary}</value>
+                        </capability>
+                    </webDriverCapabilities>
+                    <jsSrcDir>${basedir}/src/app</jsSrcDir>
+                    <jsTestSrcDir>${basedir}/src/test</jsTestSrcDir>
+                    <preloadSources>
+                        <source>${bower-components}/angular/angular.js</source>
+                        <source>${bower-components}/angular-mocks/angular-mocks.js</source>
+                    </preloadSources>
+                </configuration>
+            </plugin>
+
+        </plugins>
+    </build>
+
+</project>
